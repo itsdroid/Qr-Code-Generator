@@ -17,9 +17,11 @@ function GenerateQr() {
         const loadScreen = "loading.gif";
         QrImage.setAttribute('src', loadScreen);
         setTimeout(() => {
-            GenerateBtn.style.display = "none";
-            OptionsBtn.style.display = "block";
             QrImage.setAttribute('src', imgUrl);
+            if (QrImage.src = imgUrl) {
+                GenerateBtn.style.display = "none";
+                OptionsBtn.style.display = "block";
+            }
         }, 2000);
     }
 };
@@ -44,7 +46,7 @@ function DownloadQr() {
 }
 
 
-// copy qr function 
+// copy qr function
 function copyQr() {
     let url = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=";
     let imgUrl = url + QrText.value;
@@ -55,12 +57,33 @@ function copyQr() {
             const item = new ClipboardItem({ "image/png": blob });
             navigator.clipboard.write([item]);
         });
+
+    setTimeout(() => {
+        alertDiv.style.display = "block";
+    }, 250);
+
+    setTimeout(() => {
+        alertDiv.style.display = "none";
+    }, 1600);
 }
-
-
 
 function shareQr() {
-    alertDiv.style.display = "block";
-    navigator.clipboard.writeText(QrText.value);
-}
+    let url = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=";
+    let imgUrl = url + QrText.value;
 
+    fetch(imgUrl)
+        .then((res) => res.blob())
+        .then((blob) => {
+            const item = new File([blob], "qr.png", { type: "image/png" });
+
+            if (navigator.share) {
+                navigator.share({
+                    files: [item],
+                    title: 'QR Code',
+                    text: QrText.value
+                });
+            } else {
+                alert("Sharing not supported on this browser.");
+            }
+        });
+}
