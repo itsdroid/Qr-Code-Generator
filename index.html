@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR code generator </title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+
+</head>
+
+<body>
+    <main class="tracking-tighter min-h-screen container min-w-screen m-auto  bg-zinc-900 ">
+        <div class="flex justify-center text-white poppins items-center">
+            <div class="mt-10 flex flex-col items-center">
+                <h1 class="text-5xl font-medium "> Qr Code Generator </h1>
+
+                <p class="alert absolute right-0 mr-20 bg-blue-500 px-5 py-1 rounded-lg " id="alertDiv"> qr copied to clipboard   </>
+
+                <div class="mt-26 mb-7">
+                    <input type="text" name="text" placeholder="Enter text or URL" autocomplete="off"
+                        class="pl-3 pr-60 rounded-lg py-2.5 bg-zinc-800 border text-sm focus:border-blue-500 block "
+                        id="QrText" />
+                </div>
+
+
+                <div class="h-50 w-50 lightning-box bg-blue-500" id="ImgBox">
+                    <img class=" h-48 rounded-lg" id="QrImage" src="sample.png" alt="loading image">
+                </div>
+
+
+                <!-- Generate button -->
+                <div class="flex gap-10 mt-15" id="GenerateBtn">
+                    <div onclick="GenerateQr()"
+                        class="cursor-pointer bg-gradient-to-tl from-indigo-500 to-fuchsia-500 py-1.5 px-12 rounded-lg text-sm font-medium tracking-wide">
+                        Generate QR
+                    </div>
+                </div>
+
+                <!--Option buttons -->
+                <div id="OptionsBtn" class="OptionsBtn">
+                    <div class=" flex gap-10 mt-15">
+                        <div class="" id="ShareBtn" onclick="shareQr()">
+                            <div
+                                class="cursor-pointer bg-gradient-to-tl from-indigo-500 to-fuchsia-500 py-1.5 px-7 rounded-lg text-sm font-medium tracking-wide">
+                                SHARE
+                            </div>
+                        </div>
+
+                        <div class="" onclick="DownloadQr()" id="DownloadBtn">
+                            <div
+                                class="cursor-pointer bg-gradient-to-tl from-indigo-500 to-fuchsia-500 py-1.5 px-7 rounded-lg text-sm font-medium tracking-wide">
+                                DOWNLOAD
+                            </div>
+                        </div>
+
+                        <div class="" onclick="copyQr()">
+                            <div
+                                class="cursor-pointer bg-gradient-to-tl from-indigo-500 to-fuchsia-500 py-1.5 px-7 rounded-lg text-sm font-medium tracking-wide">
+                                COPY
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <a href="/"
+                                class="cursor-pointer bg-gradient-to-tl from-indigo-500 to-fuchsia-500 py-1.5 px-7 rounded-lg text-sm font-medium tracking-wide">
+                                CLEAR
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </main>
+    <script src="script.js"> </script>
+</body>
+
+</html>
