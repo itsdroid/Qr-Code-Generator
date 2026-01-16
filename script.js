@@ -10,7 +10,16 @@ let alertDiv = document.getElementById("alertDiv");
 // generate qr function
 function GenerateQr() {
     if (!QrText.value) {
-        alert("The input cannot be empty");
+        // alert("The input cannot be empty");
+        setTimeout(() => {
+            alertDiv.style.backgroundColor = "#EF4444";
+            alertDiv.style.display = "block";
+            alertDiv.innerText = "input cannot be empty";
+        }, 250);
+
+        setTimeout(() => {
+            alertDiv.style.display = "none";
+        }, 1600);
     } else {
         let url = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=";
         let imgUrl = url + QrText.value;
@@ -59,7 +68,9 @@ function copyQr() {
         });
 
     setTimeout(() => {
+        alertDiv.style.backgroundColor = "#3B82F6";
         alertDiv.style.display = "block";
+        alertDiv.innerText = "Qr copied to clipboard";
     }, 250);
 
     setTimeout(() => {
